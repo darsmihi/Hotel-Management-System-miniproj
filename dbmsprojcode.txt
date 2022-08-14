@@ -1,0 +1,322 @@
+Form1:
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using System.Configuration;
+
+namespace dbmsproj
+{
+    public partial class Form1 : Form
+    {
+        public Form1()
+        {
+            InitializeComponent();
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string oradb = "Data Source=(DESCRIPTION =" +
+                             "(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))" +
+                            "(CONNECT_DATA =" +
+                            "(SERVER = DEDICATED)" +
+                             "(SERVICE_NAME = XE)));" +
+                            "User Id=system;Password=mihir;";
+            OracleConnection con = new OracleConnection(oradb);
+            OracleCommand cmd = new OracleCommand();
+
+            int roomnumber = int.Parse(textBox1.Text);
+            string roomtype = textBox2.Text;
+            int roomprice = int.Parse(textBox3.Text);
+         
+
+
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "")
+            {
+                MessageBox.Show("Please Enter all the Data");
+            }
+            else
+            {
+                cmd.CommandText = "INSERT INTO ROOM (roomnumber, roomtype, roomprice) VALUES (" + roomnumber + ",'" + roomtype + "'," + roomprice +")";
+                MessageBox.Show(cmd.CommandText);
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    MessageBox.Show("Cannot insert into Table");
+                }
+                else
+                {
+                    MessageBox.Show(" inserted successfully");
+                }
+            }
+
+        }
+    }
+}
+
+
+Form2:
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using System.Configuration;
+
+namespace dbmsproj
+{
+    public partial class Form2 : Form
+    {
+
+        public Form2()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click_1(object sender, EventArgs e)
+        {
+
+            string oradb = "Data Source=(DESCRIPTION =" +
+                             "(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))" +
+                            "(CONNECT_DATA =" +
+                            "(SERVER = DEDICATED)" +
+                             "(SERVICE_NAME = XE)));" +
+                            "User Id=system;Password=mihir;";
+            OracleConnection con = new OracleConnection(oradb);
+            OracleCommand cmd = new OracleCommand();
+
+            int guestnumber = int.Parse(textBox1.Text);
+            string guestname = textBox2.Text;
+            int phonenumber = int.Parse(textBox3.Text);
+            string address = textBox4.Text;
+        
+
+
+
+
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "")
+            {
+                MessageBox.Show("Please Enter all the Data");
+            }
+            else
+            {
+                cmd.CommandText = "INSERT INTO GUEST (guestnumber, guestname, phonenumber, address) VALUES (" + guestnumber + ",'" + guestname + "'," + phonenumber + ",'" + address + "')";
+                MessageBox.Show(cmd.CommandText);
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    MessageBox.Show("Cannot insert into Table");
+                }
+                else
+                {
+                    MessageBox.Show(" inserted successfully");
+                }
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string oradb = "Data Source=(DESCRIPTION =" +
+                 "(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))" +
+                "(CONNECT_DATA =" +
+                "(SERVER = DEDICATED)" +
+                 "(SERVICE_NAME = XE)));" +
+                "User Id=system;Password=mihir;";
+            OracleConnection con = new OracleConnection(oradb);
+            OracleCommand cmd = new OracleCommand();
+
+
+            int guestnumber = int.Parse(textBox1.Text);
+            string guestname = textBox2.Text;
+            int phonenumber = int.Parse(textBox3.Text);
+            string address = textBox4.Text;
+
+
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "")
+            {
+                MessageBox.Show("Please Enter all the Data");
+            }
+            else
+            {
+                cmd.CommandText = "UPDATE GUEST  SET  guestname = '" + guestname + "' , phonenumber = " + phonenumber + "  WHERE guestnumber =" + guestnumber;
+
+                MessageBox.Show(cmd.CommandText);
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    MessageBox.Show("Cannot Update the Table");
+                }
+                else
+                {
+                    MessageBox.Show(" Update successfully");
+                    this.Close();
+                }
+            }
+
+        }
+
+    }
+}
+
+Form3:
+
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Oracle.ManagedDataAccess.Client;
+using System.Configuration;
+
+namespace dbmsproj
+{
+    public partial class Form3 : Form
+    {
+        public Form3()
+        {
+            InitializeComponent();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            string oradb = "Data Source=(DESCRIPTION =" +
+                             "(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))" +
+                            "(CONNECT_DATA =" +
+                            "(SERVER = DEDICATED)" +
+                             "(SERVICE_NAME = XE)));" +
+                            "User Id=system;Password=mihir;";
+            OracleConnection con = new OracleConnection(oradb);
+            OracleCommand cmd = new OracleCommand();
+
+            int guestnumber = int.Parse(textBox1.Text);
+            int roomnumber = int.Parse(textBox2.Text);
+            
+            
+            string arrivaldate = textBox3.Text;
+            string deptdate = textBox4.Text;
+
+
+
+
+            if (textBox1.Text == "" || textBox2.Text == "" || textBox3.Text == "" || textBox4.Text == "")
+            {
+                MessageBox.Show("Please Enter all the Data");
+            }
+            else
+            {
+                cmd.CommandText = "INSERT INTO BOOK (guestnumber, roomnumber, arrivaldate, deptdate) VALUES (" + guestnumber + "," + roomnumber + ",'" + arrivaldate + "','" + deptdate + "')";
+                MessageBox.Show(cmd.CommandText);
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    MessageBox.Show("Cannot insert into Table");
+                }
+                else
+                {
+                    MessageBox.Show(" inserted successfully");
+                }
+            }
+        }
+
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void monthCalendar1_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            textBox3.Text = monthCalendar1.SelectionStart.ToShortDateString();
+        }
+
+        private void monthCalendar2_DateChanged(object sender, DateRangeEventArgs e)
+        {
+            textBox4.Text = monthCalendar2.SelectionStart.ToShortDateString();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            string oradb = "Data Source=(DESCRIPTION =" +
+                            "(ADDRESS = (PROTOCOL = TCP)(HOST = localhost)(PORT = 1521))" +
+                           "(CONNECT_DATA =" +
+                           "(SERVER = DEDICATED)" +
+                            "(SERVICE_NAME = XE)));" +
+                           "User Id=system;Password=mihir;";
+            OracleConnection con = new OracleConnection(oradb);
+            OracleCommand cmd = new OracleCommand();
+
+
+            int guestnumber = int.Parse(textBox1.Text);
+            if (textBox1.Text == "")
+            {
+                MessageBox.Show("Please Enter the Data");
+            }
+            else
+            {
+                cmd.CommandText = "delete BOOK where guestnumber=" + guestnumber;
+                MessageBox.Show(cmd.CommandText);
+                cmd.Connection = con;
+                con.Open();
+                OracleDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    MessageBox.Show("Cannot Delete from Table");
+                }
+                else
+                {
+                    MessageBox.Show(" Deleted Successfully");
+                    this.Close();
+                }
+            
+            }
+
+        }
+    }
+}
